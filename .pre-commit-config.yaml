@@ -6,14 +6,18 @@ minimum_pre_commit_version: '2.8.2'
 default_language_version:
   python: python3
 
-default_stages: [pre-commit]
-
 
 repos:
   # General file checks and fixers
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
+      - id: end-of-file-fixer
+        name: "Make sure files end with a single newline"
+        exclude: ^peps/pep-[03][0-6].*
+      - id: trailing-whitespace
+        name: "Remove any trailing whitespace"
+        exclude: ^peps/pep-[03][0-6].*
       - id: mixed-line-ending
         name: "Normalize mixed line endings"
         args: [--fix=lf]
